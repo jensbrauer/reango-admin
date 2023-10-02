@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import axios from 'axios'
 
+import Card from 'react-bootstrap/Card';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+
 export default class Page2 extends Component {
 
     state = { details: [], }
@@ -16,16 +20,20 @@ export default class Page2 extends Component {
     }
     render() {
         return (
-            <div>
-                {
-                    this.state.details.map((products, id) => (
-                        <div key={id}>
-                            <h1>{products.name}</h1>
-                            <h2>{products.brand}</h2>
-                        </div>
-                    ))
-                }
-            </div>
+            <Row xs={1} md={2} className="g-4">
+                {this.state.details.map((products, id) => (
+                    <Col key={id}>
+                    <Card>
+                        <Card.Body>
+                        <Card.Title>{products.name}</Card.Title>
+                        <Card.Text>
+                            {products.brand}
+                        </Card.Text>
+                        </Card.Body>
+                    </Card>
+                    </Col>
+                ))}
+            </Row>
         )
     }
 }

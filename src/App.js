@@ -20,7 +20,6 @@ const router = createBrowserRouter(
 function App() {
   return (
     <div>
-      <h1>HENLO</h1>
       <RouterProvider router={router} />
     </div>
   );
