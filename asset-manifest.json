@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/reango-frontend/static/css/main.073c9b0a.css",
-    "main.js": "/reango-frontend/static/js/main.b7b08501.js",
+    "main.js": "/reango-frontend/static/js/main.07e2984b.js",
     "static/js/787.cda612ba.chunk.js": "/reango-frontend/static/js/787.cda612ba.chunk.js",
     "index.html": "/reango-frontend/index.html",
     "main.073c9b0a.css.map": "/reango-frontend/static/css/main.073c9b0a.css.map",
-    "main.b7b08501.js.map": "/reango-frontend/static/js/main.b7b08501.js.map",
+    "main.07e2984b.js.map": "/reango-frontend/static/js/main.07e2984b.js.map",
     "787.cda612ba.chunk.js.map": "/reango-frontend/static/js/787.cda612ba.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.073c9b0a.css",
-    "static/js/main.b7b08501.js"
+    "static/js/main.07e2984b.js"
   ]
 }
