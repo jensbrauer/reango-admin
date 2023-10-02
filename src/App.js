@@ -8,10 +8,10 @@ import Container from './components/layouts/container';
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
-      <Route path="/" element={ <Container /> }>
+      <Route path="/reango-frontend" element={ <Container /> }>
         <Route index element={ <Homepage /> } />
-        <Route path="/page1" element={ <Page1 /> } />
-        <Route path="/page2" element={ <Page2 /> } />
+        <Route path="/reango-frontend/page1" element={ <Page1 /> } />
+        <Route path="/reango-frontend/page2" element={ <Page2 /> } />
       </Route>
     </Route>
   )

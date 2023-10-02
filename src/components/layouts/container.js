@@ -7,9 +7,9 @@ export default function container() {
         <div className="container">
             <header>
                 <h1>SECOND HAND</h1>
-                <NavLink to="/">STORE</NavLink>
-                <NavLink to="/Page1">MARKETPLACE</NavLink>
-                <NavLink to="/Page2">YOU</NavLink>
+                <NavLink to="/reango-frontend/">STORE</NavLink>
+                <NavLink to="/reango-frontend/Page1">MARKETPLACE</NavLink>
+                <NavLink to="/reango-frontend/Page2">YOU</NavLink>
             </header>
             <main>
                 <Outlet />

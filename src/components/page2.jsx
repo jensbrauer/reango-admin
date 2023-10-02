@@ -7,7 +7,7 @@ export default class Page2 extends Component {
 
     componentDidMount() {
         let data;
-        axios.get('http://127.0.0.1:8000/createproduct/').then(res => {
+        axios.get('https://reango-48565de87753.herokuapp.com/createproduct/').then(res => {
             data = res.data;
             this.setState({
                 details: data
