@@ -1,10 +1,16 @@
 import React, { Component } from "react";
+import ProductModal from "./modal";
+
 
 export default class Page1 extends Component {
     constructor(props) {
         super(props);
     }
     render() {
-        return <h2>Page1 works fine</h2>
+        return (
+        <div>
+            <h1>hej</h1>
+        </div>)
+
     }
 }

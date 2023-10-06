@@ -1,6 +1,6 @@
 // Import the react JS packages
 import {useEffect, useState} from "react";
-import axios from "axios";
+import axios from '../interceptor/axios';
 // Define the Login function.
 export const CreateProduct = () => {
      const [message, setMessage] = useState('');

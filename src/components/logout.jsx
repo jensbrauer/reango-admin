@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import axios from "axios";
+import axios from '../interceptor/axios';
 
 export const Logout = () => {
   useEffect(() => {
@@ -9,16 +9,16 @@ export const Logout = () => {
           refresh_token: localStorage.getItem('refresh_token')
         };
 
-        // Include the access token in the headers
         const headers = {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${localStorage.getItem('access_token')}`
         };
 
         console.log('Request Data:', requestData);
+        console.log('Headers:', headers);
 
         const { data } = await axios.post(
-          'http://127.0.0.1:8000/logout/',
+          'https://reango-48565de87753.herokuapp.com/logout/',
           requestData,
           {
             headers,
@@ -27,7 +27,6 @@ export const Logout = () => {
         );
 
         localStorage.clear();
-        axios.defaults.headers.common['Authorization'] = null;
         window.location.href = '/reango-frontend/login';
       } catch (e) {
         console.log('logout not working', e);
@@ -39,3 +38,4 @@ export const Logout = () => {
     <div></div>
   );
 };
+

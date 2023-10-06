@@ -1,3 +1,6 @@
+import axios from "axios";
+let refresh = false;
+
 axios.interceptors.response.use(
     (resp) => resp,
     async (error) => {
@@ -42,3 +45,4 @@ axios.interceptors.response.use(
     }
   );
   
+  export default axios

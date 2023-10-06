@@ -4,6 +4,7 @@ import axios from 'axios'
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+import ProductModal from "./modal";
 
 export default class Page2 extends Component {
 
@@ -11,7 +12,7 @@ export default class Page2 extends Component {
 
     componentDidMount() {
         let data;
-        axios.get('https://reango-48565de87753.herokuapp.com/createproduct/').then(res => {
+        axios.get('http://localhost:8000/createproduct/').then(res => {
             data = res.data;
             this.setState({
                 details: data
@@ -20,15 +21,18 @@ export default class Page2 extends Component {
     }
     render() {
         return (
-            <Row xs={1} md={2} className="g-4">
+            <Row xs={1} md={2} lg={3} className="g-4">
                 {this.state.details.map((products, id) => (
                     <Col key={id}>
                     <Card>
                         <Card.Body>
-                        <Card.Title>{products.name}</Card.Title>
-                        <Card.Text>
-                            {products.brand}
-                        </Card.Text>
+                            <Card.Title>
+                                {products.name}
+                            </Card.Title>
+                            <Card.Text>
+                                {products.brand}
+                                <ProductModal name={products.name} slug={products.slug}/>
+                            </Card.Text>
                         </Card.Body>
                     </Card>
                     </Col>
