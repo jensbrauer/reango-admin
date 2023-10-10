@@ -13,3 +13,34 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.hero-image{
+  border: 1px solid grey;
+  margin: auto;
+  width: 100%;
+  max-width: 1150px;
+  height: 400px;
+  background-image: url("static/images/hero-goggles.png");
+  background-position: center;
+  background-position-y: top;
+  background-size: cover;
+}
+
+.hero-left{
+  padding-top: 10px;
+}
+.hero-right{
+  padding-top: 10px;
+  text-align: right;
+}
+.hero-text-left{
+  background-color: rgba(0,0,0,0.5);
+  padding: 8px;
+  border: solid 2px black;
+}
+.hero-text-right{
+  background-color: rgba(0,0,0,0.5);
+  border: solid 2px black;
+  padding: 8px;
+  text-align: right;
+}

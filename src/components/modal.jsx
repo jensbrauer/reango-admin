@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import axios from '../interceptor/axios';
+import client from '../interceptor/axios';
 
 function ProductModal(props) {
   const { slug } = props;
@@ -21,7 +21,7 @@ function ProductModal(props) {
   const fetchProductDetails = async () => {
     try {
       console.log(slug)
-      const response = await axios.get(`http://localhost:8000/createproduct/?slug=${slug}`);
+      const response = await client.get(`/createproduct/?slug=${slug}`);
       const data = response.data;
       setProductData(data);
     } catch (error) {

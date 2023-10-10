@@ -12,7 +12,7 @@ export default function Container() {
     return(
         <div>
                 <Navbar bg="dark" variant="dark">
-                <Navbar.Brand href="/">SECOND HAND</Navbar.Brand>            
+                <Navbar.Brand href="/reango-frontend">SECOND HAND</Navbar.Brand>            
                     <Nav className="me-auto"> 
                     {isAuth ? <Nav.Link href="/reango-frontend/Page2">YOU</Nav.Link> : null}
                     </Nav>
@@ -24,10 +24,14 @@ export default function Container() {
             <div className="container">
                     
                 <header>
-                    <NavLink to="/reango-frontend/">STORE</NavLink>
-                    <NavLink to="/reango-frontend/Page1">MARKETPLACE</NavLink>
-                    <NavLink to="/reango-frontend/Page2">YOU</NavLink>
-                    <NavLink to="/reango-frontend/createproduct">Create Product</NavLink>
+                    <div className="row">
+                        <div className="col-6 shopping-place-left">
+                            <NavLink to="/reango-frontend/shoppingplace">STORE</NavLink>
+                        </div>
+                        <div className="col-6 shopping-place-right">
+                            <NavLink to="/reango-frontend/Page2">MARKETPLACE</NavLink>
+                        </div>  
+                    </div>
                 </header>
                 <main>
                     <Outlet />

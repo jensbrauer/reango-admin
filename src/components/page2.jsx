@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import axios from 'axios'
+import client from '../interceptor/axios';
 
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
@@ -12,7 +12,7 @@ export default class Page2 extends Component {
 
     componentDidMount() {
         let data;
-        axios.get('http://localhost:8000/createproduct/').then(res => {
+        client.get('/createproduct/').then(res => {
             data = res.data;
             this.setState({
                 details: data
@@ -25,6 +25,7 @@ export default class Page2 extends Component {
                 {this.state.details.map((products, id) => (
                     <Col key={id}>
                     <Card>
+                        <Card.Img variant="top" src={products.product_img} />
                         <Card.Body>
                             <Card.Title>
                                 {products.name}
