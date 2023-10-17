@@ -44,3 +44,29 @@ code {
   padding: 8px;
   text-align: right;
 }
+
+.shop-select .col{
+  padding: 0;
+}
+.shop-select button{
+  width: 100%;
+  margin-bottom: 0px;
+  border-style: none;
+  transition: 0.5s;
+}
+.shop-select button:hover{
+  width: 90%;
+  background-color: burlywood;
+  border-style: none;
+}
+.store-content {
+  background-color:cadetblue;
+  padding: 0 5px 5px;
+  margin: 10px 0 10px;
+  border-radius: 2px;
+}
+.filter-display{
+  background-color: bisque;
+  margin-bottom: 5px;
+
+}

@@ -23,16 +23,7 @@ export default function Container() {
                 </Navbar>
             <div className="container">
                     
-                <header>
-                    <div className="row">
-                        <div className="col-6 shopping-place-left">
-                            <NavLink to="/reango-frontend/shoppingplace">STORE</NavLink>
-                        </div>
-                        <div className="col-6 shopping-place-right">
-                            <NavLink to="/reango-frontend/Page2">MARKETPLACE</NavLink>
-                        </div>  
-                    </div>
-                </header>
+                
                 <main>
                     <Outlet />
                 </main>
