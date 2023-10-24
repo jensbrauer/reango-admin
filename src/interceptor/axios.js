@@ -7,10 +7,10 @@ client.interceptors.response.use(
   async (error) => {
     if (error.response.status === 401 && !refresh) {
       refresh = true;
-      console.log("Handling 401 Unauthorized Error");
+      console.log("Interceptor blockage: Handling 401 Unauthorized Error");
 
       // Log the current refresh token from localStorage
-      console.log('Refresh Token:', localStorage.getItem('refresh_token'));
+      //console.log('Refresh Token:', localStorage.getItem('refresh_token'));
 
       try {
         const response = await client.post(
@@ -30,13 +30,14 @@ client.interceptors.response.use(
 
         if (response.status === 200) {
           // Log the new access token
-          console.log('New Access Token:', response.data['access']);
+          //console.log('New Access Token:', response.data['access']);
 
           // Update the Authorization header in the Axios client
-          client.defaults.headers.common['Authorization'] = `Bearer ${response.data['access']}`;
+          //client.defaults.headers.common['Authorization'] = `Bearer ${response.data['access']}`;
+          error.config.headers.Authorization = `Bearer ${response.data['access']}`;
           localStorage.setItem('access_token', response.data.access);
           localStorage.setItem('refresh_token', response.data.refresh);
-
+          console.log('TRY WITH NEW')
           // Log the updated request configuration
           console.log('Updated Request Config:', error.config);
 
@@ -45,7 +46,7 @@ client.interceptors.response.use(
         }
       } catch (refreshError) {
         // Handle errors that may occur during the refresh process
-        console.error('Error refreshing token:', refreshError);
+        //console.error('Error refreshing token:', refreshError);
       } finally {
         refresh = false;
       }
