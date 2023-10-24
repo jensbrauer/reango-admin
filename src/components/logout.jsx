@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import axios from '../interceptor/axios';
+import client from '../interceptor/axios';
 
 export const Logout = () => {
   useEffect(() => {
@@ -17,8 +17,8 @@ export const Logout = () => {
         console.log('Request Data:', requestData);
         console.log('Headers:', headers);
 
-        const { data } = await axios.post(
-          'https://reango-48565de87753.herokuapp.com/logout/',
+        const { data } = await client.post(
+          'logout/',
           requestData,
           {
             headers,
@@ -30,12 +30,15 @@ export const Logout = () => {
         window.location.href = '/reango-frontend/login';
       } catch (e) {
         console.log('logout not working', e);
+        window.location.href = '/reango-frontend/login';
       }
     })();
   }, []);
 
   return (
-    <div></div>
+    <div>
+      <h1>SIGNING OUT</h1>
+    </div>
   );
 };
 

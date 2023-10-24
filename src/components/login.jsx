@@ -1,5 +1,5 @@
 // Import the react JS packages 
-import axios from "axios";
+import client from "../interceptor/axios";
 import {useState} from "react";
 // Define the Login function.
 
@@ -15,7 +15,7 @@ export const Login = () => {
                };
           // Create the POST requuest
           const {data} = await                                                                            
-                         axios.post('https://reango-48565de87753.herokuapp.com/token/',
+                         client.post('token/',
                          user ,{headers: 
                         {'Content-Type': 'application/json'},
                          withCredentials: true});
@@ -24,7 +24,7 @@ export const Login = () => {
          localStorage.clear();
          localStorage.setItem('access_token', data.access);
          localStorage.setItem('refresh_token', data.refresh);
-         axios.defaults.headers.common['Authorization'] = 
+         client.defaults.headers.common['Authorization'] = 
                                          `Bearer ${data['access']}`;
          window.location.href = '/reango-frontend'
     }

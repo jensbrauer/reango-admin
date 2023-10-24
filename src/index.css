@@ -70,3 +70,19 @@ code {
   margin-bottom: 5px;
 
 }
+
+#prodimg-upload-preview {
+  margin: auto;
+  filter: grayscale(50%);
+}
+
+.prod-img-upload {
+  margin: auto;
+  max-width: 600px;
+}
+
+.prodimg_upload{
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
