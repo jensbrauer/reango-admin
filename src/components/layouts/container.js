@@ -12,9 +12,9 @@ export default function Container() {
     return(
         <div>
                 <Navbar bg="dark" variant="dark">
-                <Navbar.Brand href="/reango-frontend">SECOND HAND</Navbar.Brand>            
+                <Navbar.Brand href="/reango-frontend">SUPER STORE</Navbar.Brand>            
                     <Nav className="me-auto"> 
-                    {isAuth ? <Nav.Link href="/reango-frontend/Page2">YOU</Nav.Link> : null}
+                    {isAuth ? <Nav.Link href="/reango-frontend/you">YOU</Nav.Link> : null}
                     </Nav>
                     <Nav>
                     {isAuth ? <Nav.Link href="/reango-frontend/logout">Logout</Nav.Link> :  

@@ -13,10 +13,10 @@ export default class Homepage extends Component {
     render() {
         return <div className="hero-image row">
             <div className=" col-6 hero-left">
-                <h4 className="hero-text-left">Goggles 70%</h4>
+                <h4 className="hero-text-left">NEW ITEMS DROPPED</h4>
             </div>
             <div className="col-6 hero-right">
-                <h4 className="hero-text-right">View SALE</h4>
+                <h4 className="hero-text-right">TO STORE</h4>
             </div>
         </div>
     }
