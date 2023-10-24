@@ -8,6 +8,7 @@ export type Product = {
   gender: number;
   brand: number;
   category: number;
+  user_type: string;
   prize: number;
   date_added: Date;
   product_img: string;
@@ -27,6 +28,7 @@ export type ProductFilterParams = {
   category: string | undefined;
   prize_min: string | undefined;
   prize_max: string | undefined;
+  user_type: string | undefined;
 };
 
 

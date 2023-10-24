@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import client from '../interceptor/axios';
+import client from '../../interceptor/axios';
 
 function ProductModal(props) {
   const { slug } = props;

@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from "react";
-import client from '../interceptor/axios';
+import client from '../../interceptor/axios';
+import { LikeProduct, CartProduct } from "./likeproduct";
 
-import Card from 'react-bootstrap/Card';
-import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Dropdown from 'react-bootstrap/Dropdown';
 
 import Row from 'react-bootstrap/Row';
-import ProductModal from "./modal";
+import Card from 'react-bootstrap/Card';
+import Col from 'react-bootstrap/Col';
+import ProductModal from "./productmodal";
 
 import { GenderFilter, BrandFilter, PrizeFilter } from "./shopfilters";
 
-import '../index.css'
+import '../../index.css'
 
-function Page2() {
+function Shop() {
     const [details, setDetails] = useState([]);
     const [user_type, setUserType] = useState([]);
     const [gender, setGender] = useState([]);
@@ -44,7 +45,7 @@ function Page2() {
 
         const queryString = queryParams.join('&')
         //console.log(queryString)
-        console.log(client)
+        //console.log(client)
         client.get(`/createproduct/?${queryString}`).then((res) => {
             setDetails(res.data);
         }).catch((err) => {
@@ -111,6 +112,8 @@ function Page2() {
                                     </Card.Title>
                                     <Card.Text>
                                         {product.brand}
+                                        <Button variant="dark" onClick={() => LikeProduct(product.slug)}>Like</Button>
+                                        <Button variant="danger" onClick={() => CartProduct(product.slug)}>Cart</Button>
                                         <ProductModal name={product.name} slug={product.slug} />
                                     </Card.Text>
                                 </Card.Body>
@@ -123,4 +126,4 @@ function Page2() {
     );
 }
 
-export default Page2;
+export default Shop;

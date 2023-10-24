@@ -15,6 +15,7 @@ const useProducts = (query: ProductFilterParams) =>
       query.category,
       query.prize_min,
       query.prize_max,
+      query.user_type
     ],
     queryFn: () => retrieveProductList(query),
   });

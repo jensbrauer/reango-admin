@@ -4,13 +4,14 @@ import useProducts from "./useProducts.ts";
 
 const NAME_KEY = "search";
 const CONDITION_KEY = "select_condition";
-const SOLD_BY_KEY = "";
+const SOLD_BY_KEY = "sold_by";
 const SIZE_KEY = "select_size";
 const GENDER_KEY = "select_gender";
 const BRAND_KEY = "select_brand";
 const CATEGORY_KEY = "select_category";
 const PRIZE_MIN_KEY = "prize_min";
 const PRIZE_MAX_KEY = "prize_max";
+const USER_TYPE_KEY = "user_type";
 
 function ShoppingPlace() {
   const [searchParams] = useSearchParams();
@@ -23,6 +24,7 @@ function ShoppingPlace() {
   const [category, setCategory] = useState("");
   const [prize_min, setPrizeMin] = useState("");
   const [prize_max, setPrizeMax] = useState("");
+  const [user_type, setUserType] = useState("");
   //const [burningTimeMin, setBurningTimeMin] = useState("");
   //const [burningTimeMax, setBurningTimeMax] = useState("");
   //const [priceMin, setPriceMin] = useState("");
@@ -44,21 +46,44 @@ function ShoppingPlace() {
     category,
     prize_min,
     prize_max,
+    user_type,
   });
   const navigate = useNavigate();
 
 
-  const handleSoldByFilter = (
-    sold_by: string | null
-  ) => {
-    console.log(sold_by ? sold_by : 'henlo')
-    searchParams.set(SOLD_BY_KEY, sold_by ? sold_by.toString() : "");
+  const handleUserTypeFilter = (user_type) => {
+    console.log(user_type.join('&user='))
+    //console.log(user_type ? user_type : 'henlo');
+    for (const user in user_type) {
+      searchParams.set(USER_TYPE_KEY, user ? user : "");
+    }
+    if (user_type !== null) {
+    console.log(searchParams.toString())}
     navigate({
       pathname: "/reango-frontend/shoppingplace",
       search: searchParams.toString(),
     });
   };
+  
+  function createUserTypeFilter() {
+    console.log(filterBundle.join())
+  };
 
+  const [filterBundle, setFilterBundle] = useState([]);
+
+  function addFilter(filterValue) {
+    if (!filterBundle.includes(filterValue)) {
+      // If filterValue is not in the array, add it
+      const newFilterBundle = [...filterBundle, filterValue];
+      setFilterBundle(newFilterBundle);
+      handleUserTypeFilter(newFilterBundle)
+    } else {
+      // If filterValue is already in the array, remove it
+      const newFilterBundle = filterBundle.filter(item => item !== filterValue);
+      setFilterBundle(newFilterBundle);
+      handleUserTypeFilter(newFilterBundle)
+    }
+  }
 
 /*   const handlePriceFilter = (
     minBurningTime: number | null,
@@ -114,18 +139,22 @@ function ShoppingPlace() {
     setCategory(searchParams.get(CATEGORY_KEY) || "");
     setPrizeMin(searchParams.get(PRIZE_MIN_KEY) || "");
     setPrizeMax(searchParams.get(PRIZE_MAX_KEY) || "");
+    setUserType(searchParams.get(USER_TYPE_KEY) || "");
   }, [searchParams]);
 
   return (
     <div>
-    <button onClick={() => handleSoldByFilter("STORE")}>Filter by STORE</button>
-    <button onClick={() => handleSoldByFilter(null)}>Show All Products</button>
+    <button onClick={() => handleUserTypeFilter('FEATURED')}>Filter by STORE</button>
+    <button onClick={() => handleUserTypeFilter(null)}>Show All Products</button>
+    <button onClick={() => addFilter('STORE')}>Store</button>
+    <button onClick={() => addFilter('FEATURED')}>Featured</button>
+    <button onClick={() => addFilter('USER')}>User</button>
       <table>
         <thead>
           <tr>
             <th>Name</th>
             <th>Condition</th>
-            <th>Sold By</th>
+            <th>User Type</th>
           </tr>
         </thead>
         <tbody>
@@ -134,7 +163,7 @@ function ShoppingPlace() {
             <tr key={product.id}>
               <td>{product.name}</td>
               <td>{product.condition}</td>
-              <td>{product.sold_by}</td>
+              <td>{product.user_type}</td>
             </tr>
           ))
         ) : (
