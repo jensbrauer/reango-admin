@@ -15,6 +15,9 @@ export default function Container() {
                 <Navbar.Brand href="/reango-frontend">SUPER STORE</Navbar.Brand>            
                     <Nav className="me-auto"> 
                     {isAuth ? <Nav.Link href="/reango-frontend/you">YOU</Nav.Link> : null}
+                    </Nav>            
+                    <Nav className="me-auto"> 
+                        <Nav.Link href="/reango-frontend/shop">MARKETPLACE</Nav.Link>
                     </Nav>
                     <Nav>
                     {isAuth ? <Nav.Link href="/reango-frontend/logout">Logout</Nav.Link> :  

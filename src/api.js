@@ -1,10 +1,10 @@
 import axios from 'axios';
 
 //Localhost
-const host = 'http://localhost:8000'
+//const host = 'http://localhost:8000'
 
 //Serverhost
-//const host = 'https://reango-48565de87753.herokuapp.com'
+const host = 'https://reango-48565de87753.herokuapp.com'
 
 
 // Create an instance of Axios with a base URL

@@ -3,7 +3,7 @@ import { createBrowserRouter, Route, createRoutesFromElements, RouterProvider } 
 import Homepage from './components/homepage';
 import ShoppingPlace from './components/shoppingplace/shoppingplace.tsx';
 import Shop from './components/shop/shop';
-import { UserPage } from './components/user/userpage';
+import { UserPage } from './components/user/userpagecontainer';
 import Container from './components/layouts/container';
 import { Logout } from './components/logout';
 import { Login } from "./components/login";
@@ -23,6 +23,7 @@ const router = createBrowserRouter(
         <Route path="/reango-frontend/logout" element={ <Logout/> } />
         <Route path="/reango-frontend/createproduct" element={ <CreateProduct/> } />
         <Route path="/reango-frontend/you" element={ <UserPage/> } />
+        <Route path="/reango-frontend/NEWyou" element={ <UserPage/> } />
       </Route>
     </Route>
   )

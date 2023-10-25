@@ -14,7 +14,7 @@ import Ratio from 'react-bootstrap/Ratio';
 
 
 // Define the Login function.
-export const UserPage = () => {
+export const UserPageSell = () => {
      const [items, setItems] = useState('');
      //console.log(items)
 
@@ -172,42 +172,29 @@ export const UserPage = () => {
                 <Accordion.Item eventKey="1">
                     <Accordion.Header><h4>My Stuff</h4></Accordion.Header>
                     <Accordion.Body>
-        <Row xs={1} md={2} lg={3} className="g-4">
-        {items ? (
-            items.map((item, id) => (
-                <Col key={id}>
-                <Card>
-                    <Card.Img variant="top" src={item.product_img} />
-                    <Card.Body>
-                    <Card.Title>{item.name}</Card.Title>
-                    <Card.Text>
-                        {item.brand}
-                        <ProductModal name={item.name} slug={item.slug} />
-                    </Card.Text>
-                    </Card.Body>
-                </Card>
-                </Col>
-            ))
-            ) : (
-            <div>Loading</div>
-            )}
-        </Row>
+                        <Row xs={1} md={2} lg={3} className="g-4">
+                        {items ? (
+                            items.map((item, id) => (
+                                <Col key={id}>
+                                <Card>
+                                    <Card.Img variant="top" src={item.product_img} />
+                                    <Card.Body>
+                                    <Card.Title>{item.name}</Card.Title>
+                                    <Card.Text>
+                                        {item.brand}
+                                        <ProductModal name={item.name} slug={item.slug} />
+                                    </Card.Text>
+                                    </Card.Body>
+                                </Card>
+                                </Col>
+                            ))
+                            ) : (
+                            <div>Loading</div>
+                            )}
+                        </Row>
                     </Accordion.Body>
                 </Accordion.Item>
 
-                <Accordion.Item eventKey="2">
-                    <Accordion.Header><h4>Liked Stuff</h4></Accordion.Header>
-                    <Accordion.Body>
-                        <p>Henlo fwend</p>
-                    </Accordion.Body>
-                </Accordion.Item>
-
-                <Accordion.Item eventKey="3">
-                    <Accordion.Header><h4>Shoppingcart</h4></Accordion.Header>
-                    <Accordion.Body>
-                        <p>Henlo fwendlier</p>
-                    </Accordion.Body>
-                </Accordion.Item>
 
             </Accordion>
         </div>
