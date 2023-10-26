@@ -1,5 +1,5 @@
 import './App.css';
-import { createBrowserRouter, Route, createRoutesFromElements, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, Route, createRoutesFromElements, RouterProvider, createHashRouter, HashRouter } from "react-router-dom";
 import Homepage from './components/homepage';
 import ShoppingPlace from './components/shoppingplace/shoppingplace.tsx';
 import Shop from './components/shop/shop';
@@ -12,7 +12,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query"; // Imp
 
 const queryClient = new QueryClient(); // Create a QueryClient instance
 
-const router = createBrowserRouter(
+/* const router = createHashRouter(
   createRoutesFromElements(
     <Route>
       <Route path="/reango-frontend" element={ <Container /> }>
@@ -26,16 +26,18 @@ const router = createBrowserRouter(
         <Route path="/reango-frontend/NEWyou" element={ <UserPage/> } />
       </Route>
     </Route>
+    INSIDE THE RETURN
+    <RouterProvider router={router} />
   )
-)
+) */
 
 function App() {
   return (
-    <div>
       <QueryClientProvider client={queryClient}> {/* Wrap your App with QueryClientProvider */}
-        <RouterProvider router={router} />
+        <HashRouter>
+          <Container />
+        </HashRouter>
       </QueryClientProvider>
-    </div>
   );
 }
 
