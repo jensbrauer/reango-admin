@@ -3,7 +3,7 @@ import client from '../../interceptor/axios';
 
 
 
-export const LikeProduct = async (productSlug) => {
+export const LikeProduct = async (productSlug, request) => {
         try {
             const requestData = {
             refresh_token: localStorage.getItem('refresh_token'),
@@ -48,8 +48,8 @@ export const CartProduct = async (productSlug) => {
         Authorization: `Bearer ${localStorage.getItem('access_token')}`
         };
 
-        console.log('Request Data:', requestData);
-        console.log('Headers:', headers);
+        /* console.log('Request Data:', requestData);
+        console.log('Headers:', headers); */
 
         const { data } = await client.post(
         'cart/',

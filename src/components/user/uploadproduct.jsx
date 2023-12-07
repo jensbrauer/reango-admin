@@ -14,48 +14,9 @@ import Ratio from 'react-bootstrap/Ratio';
 
 
 // Define the Login function.
-export const UserPageSell = () => {
-     const [items, setItems] = useState('');
-     //console.log(items)
+export const UploadProduct = (props) => {
 
-    console.log('Request being made:');
-    console.log('URL: /you/');
-    console.log('Headers:', {
-    'Content-Type': 'application/json',
-    Authorization: `Bearer ${localStorage.getItem('access_token')}`
-    });
-    console.log('withCredentials: true');
-
-     useEffect(() => {
-        /* console.log(localStorage.getItem('access_token'))
-        console.log(localStorage.getItem('refresh_token')) */
-        if(localStorage.getItem('access_token') === null){                   
-            window.location.href = '/reango-frontend/login'
-        }
-        else{
-         (async () => {
-           try {
-             const {data} = await client.get(   
-                            'you/', {
-                             headers: {
-                                'Content-Type': 'application/json',
-                                Authorization: `Bearer ${localStorage.getItem('access_token')}`
-                             },
-                             withCredentials: true
-                           }
-                           );
-             setItems(data);
-             //const products = data
-             /* console.log('RETRY REQUEST')
-             console.log(`Bearer ${localStorage.getItem('access_token')}`) */
-          } catch (e) {
-            console.log('not auth')
-            console.log(e)
-          }
-         })()};
-     }, []);
-
-     const [formData, setFormData] = useState({
+    const initFormData = {
         name: '',
         description: '',
         brand: '',
@@ -64,7 +25,16 @@ export const UserPageSell = () => {
         gender: '',
         category: '',
         product_img: '',
-    });
+    }
+
+    const [formData, setFormData] = useState(initFormData);
+
+    function resetForm() {
+        /* setFormData(initFormData)
+        setImgPreview(productplaceholder) */
+        props.returnFunction()
+    }
+    
 
     const handleChange = (e) => {
         /* console.log(e.target) */
@@ -106,13 +76,8 @@ export const UserPageSell = () => {
       }
 
      return (
-        <div>{/* 
+        <div id="upload-form">
             
-
-            <Accordion defaultActiveKey="1">
-                <Accordion.Item eventKey="0">
-                    <Accordion.Header><h4>Upload new product</h4></Accordion.Header>
-                    <Accordion.Body>
                         <Ratio className="prod-img-upload" key={'4x3'} aspectRatio={'4x3'}>
                             <div className="prodimg_upload" style={{ backgroundImage: `url(${imgPreview})` }} />
                         </Ratio>
@@ -165,38 +130,7 @@ export const UserPageSell = () => {
                             <option value="2">Hats</option>
                         </Form.Select>
                         </Form>
-                <RUSureModal product={formData}/>
-                    </Accordion.Body>
-                </Accordion.Item>
-
-                <Accordion.Item eventKey="1">
-                    <Accordion.Header><h4>My Stuff</h4></Accordion.Header>
-                    <Accordion.Body>
-                        <Row xs={1} md={2} lg={3} className="g-4">
-                        {items ? (
-                            items.map((item, id) => (
-                                <Col key={id}>
-                                <Card>
-                                    <Card.Img variant="top" src={item.product_img} />
-                                    <Card.Body>
-                                    <Card.Title>{item.name}</Card.Title>
-                                    <Card.Text>
-                                        {item.brand}
-                                        <ProductModal name={item.name} slug={item.slug} />
-                                    </Card.Text>
-                                    </Card.Body>
-                                </Card>
-                                </Col>
-                            ))
-                            ) : (
-                            <div>Loading</div>
-                            )}
-                        </Row>
-                    </Accordion.Body>
-                </Accordion.Item>
-
-
-            </Accordion> */}
+                <RUSureModal returnFunction={resetForm} product={formData}/>
         </div>
         )
 }

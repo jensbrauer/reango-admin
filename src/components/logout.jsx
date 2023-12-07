@@ -27,10 +27,10 @@ export const Logout = () => {
         );
 
         localStorage.clear();
-        window.location.href = '/reango-frontend/login';
+        window.location.href = '/reango-frontend';
       } catch (e) {
         console.log('logout not working', e);
-        window.location.href = '/reango-frontend/login';
+        window.location.href = '/reango-frontend#/login';
       }
     })();
   }, []);

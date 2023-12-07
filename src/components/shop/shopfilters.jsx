@@ -3,13 +3,22 @@ import React, { useState } from "react";
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
+import Button from 'react-bootstrap/Button';
 
 function GenderFilter(props) {
-  return <div>
-    <button onClick={() => props.returnFunction(0)}>Male</button>
-    <button onClick={() => props.returnFunction(1)}>FEMALE</button>
-    <button onClick={() => props.returnFunction(2)}>Unisex</button>
-    </div>;
+  return (
+    <Row>
+      <Col>
+        <Button onClick={() => props.returnFunction(0)}>Male</Button>
+      </Col>
+      <Col>
+        <Button onClick={() => props.returnFunction(1)}>FEMALE</Button>
+      </Col>
+      <Col>
+        <Button onClick={() => props.returnFunction(2)}>Unisex</Button>
+      </Col>
+    </Row>
+    )
 }
 
 function BrandFilter(props) {
@@ -65,9 +74,9 @@ function PrizeFilter(props) {
           </Col>
         </Form.Group>
   
-        <button type="submit" className="btn btn-primary">
+        <Button type="submit" className="btn btn-warning">
           Set Prize Range
-        </button>
+        </Button>
       </Form>
     );}
 

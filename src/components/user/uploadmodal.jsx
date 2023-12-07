@@ -2,8 +2,9 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { SubmitProduct } from './submitproduct';
+import { UploadProduct } from './uploadproduct'
 
-function RUSureModal(props) {
+function UploadModal(props) {
   const [show, setShow] = useState(false);
 
   const handleClose = () => {
@@ -21,6 +22,9 @@ function RUSureModal(props) {
     props.returnFunction()
   } 
   const handleShow = () => setShow(true);
+  function reload() {
+      console.log('henlo')
+  }
 
   return (
     <>
@@ -32,7 +36,12 @@ function RUSureModal(props) {
         <Modal.Header closeButton>
           <Modal.Title>Modal heading</Modal.Title>
         </Modal.Header>
-        <Modal.Body>{submitMessage ? submitMessage : props.product.name}</Modal.Body>
+
+        <Modal.Body>
+            <UploadProduct returnFunction={reload}/>
+        </Modal.Body>
+
+
         <Modal.Footer>
           {submitMessage ? <Button variant="secondary" onClick={rerender}>
             Close
@@ -46,4 +55,4 @@ function RUSureModal(props) {
   );
 }
 
-export default RUSureModal;
+export default UploadModal;

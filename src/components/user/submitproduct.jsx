@@ -34,7 +34,7 @@ export const SubmitProduct = async (newProduct) => {
             );
 
             //localStorage.clear();
-            //window.location.href = '/reango-frontend/you';
+            //window.location.href = 'reango-frontend#/you';
         } catch (e) {
             //window.location.href = '/reango-frontend/you';
             console.log('logout not working', e);

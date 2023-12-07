@@ -1,23 +1,106 @@
-import React, { Component } from "react";
-import Image from 'react-bootstrap/Image'
-import Hero from '../static/images/kindpng_1196166.png'
-import '../index.css'
+import React, { useEffect, useState } from "react";
+import moment from 'moment';
+import client from '../interceptor/axios';
+import Row from 'react-bootstrap/Row';
+import Card from 'react-bootstrap/Card';
+import Col from 'react-bootstrap/Col';
+import Ratio from 'react-bootstrap/Ratio';
+import Spinner from 'react-bootstrap/Spinner';
 
+import { useNavigate } from 'react-router-dom';
+import FollowButton from './followbutton';
+import Button from 'react-bootstrap/Button';
+import ProductModal from "../components/shop/productmodal";
 
-import { BrowserRouter as Router, Routes, Route, Link, Redirect } from "react-router-dom"
+export const Homepage = () => {
+    const [details, setDetails] = useState([]);
+    const navigate = useNavigate()
 
-export default class Homepage extends Component {
-    constructor(props) {
-        super(props);
+    const handleNavigate = (proposition) => {
+        navigate('/profilepage', { state: { slug: proposition } })
     }
-    render() {
-        return <div className="hero-image row">
-            <div className=" col-6 hero-left">
-                <h4 className="hero-text-left">NEW ITEMS DROPPED</h4>
+
+    useEffect(() => {
+        setDetails('spinner')
+        // Your API call logic remains unchanged
+        const fetchData = async () => {
+            try {
+                const response = await client.get(`/news`, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${localStorage.getItem('access_token') || ''}`
+                    },
+                    withCredentials: true
+                });
+
+                const sortedDetails = response.data.sort((a, b) => {
+                    const dateA = moment(a.uploaded, 'YYYY-MM-DD');
+                    const dateB = moment(b.uploaded, 'YYYY-MM-DD');
+                    return dateB - dateA;  // Sorting in descending order, adjust if needed
+                });
+
+                setDetails(sortedDetails);
+            } catch (error) {
+                // Handle errors
+                console.error(error);
+            }
+        };
+
+        fetchData();
+    }, []);
+
+    return (
+        
+            <div className="news-feed">
+                <h2>Whats New?</h2>
+                <hr/>
+                {details === 'spinner' ? <div className="spinner-container"><Spinner animation="grow" /></div>  : 
+                <Row xs={1} className="g-4">
+                    {details.map((product, id) => (
+                        
+                        <Col key={id}>
+                            
+                            <Card>
+                                <Card.Body>
+                                    {/* <Card.Title></Card.Title> */}
+                                    <Card.Text>
+                                        <Row>
+                                            <Col>
+                                                <Row>
+                                                    <Col>
+                                                <div className="profile-pic-news" style={{ backgroundImage: `url(${product.profile_pic})` }} />
+                                                </Col>
+                                                    <Col>
+                                                <Button variant="dark" onClick={() => handleNavigate(product.profile_slug)}>{product.sold_by}</Button>
+                                                </Col>
+
+                                                </Row>
+                                                <Row>
+                                                    {moment(product.uploaded).format('YYYY-MM-DD')}
+                                                </Row>
+                                                <hr />
+                                                <Row>
+                                                    
+                                                <h5>{product.name}</h5>
+                                                {/* <FollowButton username={product.sold_by} followed={true}/> */}
+                                                </Row>
+                                            </Col>
+                                            <Col>
+                                                {/* <div className="product-img-news" style={{ backgroundImage: `url(${product.product_img})` }} /> */}
+                                                <Ratio key={'1x1'} aspectRatio={'1x1'}>
+                                                    <div className="prodimg_upload" style={{ backgroundImage: `url(${product.product_img})` }} />
+                                                </Ratio>
+                                                
+                                                {/* <ProductModal isAuth_status={isAuth} product_detail={product} name={product.product_img} slug={product.slug} /> */}
+                                            </Col>
+                                        </Row>
+                                    </Card.Text>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                    ))}
+                </Row>
+                }
             </div>
-            <div className="col-6 hero-right">
-                <h4 className="hero-text-right">TO STORE</h4>
-            </div>
-        </div>
-    }
-}
+    );
+};
