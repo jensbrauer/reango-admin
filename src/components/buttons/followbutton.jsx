@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import client from '../interceptor/axios';
+import client from '../../interceptor/axios';
 import Ratio from 'react-bootstrap/Ratio';
 import Image from 'react-bootstrap/Image';
 
@@ -65,7 +65,7 @@ const handleClick = () => {
   
 
   return (
-    <Button onClick={handleClick}>Follow {username}</Button>
+    <Button id="follow-button" onClick={handleClick}>Follow {username}</Button>
   )
 }
 

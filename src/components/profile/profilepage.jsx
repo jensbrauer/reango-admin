@@ -10,15 +10,15 @@ import Spinner from 'react-bootstrap/Spinner';
 import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import { useLocation } from 'react-router-dom';
-import FollowButton from '../followbutton';
+import FollowButton from '../buttons/followbutton';
 import ProfileProductList from "./profileproductlist";
 
 export const ProfilePage = () => {
     const location = useLocation();
-    const profile_slug = location.state && location.state.slug;
+    const profile_username = location.state && location.state.username;
 
-    const [items, setItems] = useState([]);
-
+    const [items, setItems] = useState('spinner');
+    console.log(profile_username)
     useEffect(() => {
        
         setItems('spinner')
@@ -30,7 +30,7 @@ export const ProfilePage = () => {
           try {
             const requestData = {
                 params : {
-              slug: profile_slug,
+              username: profile_username,
             }};
             const {data} = await client.get(   
                            'profile/', requestData, {
@@ -48,23 +48,34 @@ export const ProfilePage = () => {
          }
         })()};
     }, []);
-    console.log(profile_slug)
+    console.log(profile_username)
     return (
         
             <div className="news-feed">
                 {items === 'spinner' ? <div className="spinner-container"><Spinner animation="grow" /></div> : 
                 <div>
-                <h2>Name: {items.username}
-                    <FollowButton username={items.username} followed={true} />
-                </h2>
-                    <Ratio key={'1x1'} aspectRatio={'1x1'}>
-                        <div className="prodimg_upload" style={{ backgroundImage: `url(${items.profile_pic})` }}>                            
-                        </div>
-                    </Ratio>
+                    <Row>
+                        <Col>
+                            <h2>{items.username}</h2>
+                        </Col>
+                        <Col className="text-right">
+                            <FollowButton username={items.username} followed={true} />
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <Ratio key={'1x1'} aspectRatio={'1x1'}>
+                                <div className="prodimg_upload profile-page-pic" style={{ backgroundImage: `url(${items.profile_pic})` }}>                            
+                                </div>
+                            </Ratio>
+                        </Col>
+                        <Col></Col>
+                    </Row>
                 </div>}
                 <hr></hr>
-                <h1>For sale:</h1>
-                <ProfileProductList profile_slug={profile_slug}/>
+                <h2>For sale</h2>
+                {items === 'spinner' ?  <div className="spinner-container"><Spinner animation="grow" /></div> : <ProfileProductList profile_username={profile_username}/>}
+                
             </div>
     );
 };

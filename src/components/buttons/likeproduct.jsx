@@ -3,7 +3,7 @@ import client from '../../interceptor/axios';
 
 
 
-export const LikeProduct = async (productSlug, request) => {
+export const LikeProduct = async (productSlug) => {
         try {
             const requestData = {
             refresh_token: localStorage.getItem('refresh_token'),

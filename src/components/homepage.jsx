@@ -8,9 +8,11 @@ import Ratio from 'react-bootstrap/Ratio';
 import Spinner from 'react-bootstrap/Spinner';
 
 import { useNavigate } from 'react-router-dom';
-import FollowButton from './followbutton';
+import FollowButton from './buttons/followbutton';
 import Button from 'react-bootstrap/Button';
-import ProductModal from "../components/shop/productmodal";
+import ProductModal from "./shop/productmodal";
+import ToProfile from "./buttons/toprofile";
+import logotype from "../static/images/H-online_logo_black_mini.webp"
 
 export const Homepage = () => {
     const [details, setDetails] = useState([]);
@@ -60,35 +62,47 @@ export const Homepage = () => {
                         
                         <Col key={id}>
                             
-                            <Card>
-                                <Card.Body>
+                            <Card className="feed-card">
+                                <Card.Body  className="feed-card-body">
                                     {/* <Card.Title></Card.Title> */}
                                     <Card.Text>
                                         <Row>
-                                            <Col>
+                                            <Col xs={5}>
                                                 <Row>
                                                     <Col>
-                                                <div className="profile-pic-news" style={{ backgroundImage: `url(${product.profile_pic})` }} />
-                                                </Col>
+                                                        <div className="profile-pic-news" style={{ backgroundImage: `url(${product.profile_pic})` }} />
+                                                    </Col>
                                                     <Col>
-                                                <Button variant="dark" onClick={() => handleNavigate(product.profile_slug)}>{product.sold_by}</Button>
-                                                </Col>
+                                                        {/* <Button variant="dark" onClick={() => handleNavigate(product.profile_slug)}>{product.sold_by}</Button> */}
+                                                        
+                                                        <Row>
+                                                            <Col className="text-right">
+                                                            <ToProfile slug={product.profile_slug} username={product.sold_by}/>
+                                                            </Col>
+                                                        </Row>
+                                                        <Row>
+                                                            <Col className="text-right">
+                                                            {moment(product.uploaded).format('YYYY-MM-DD')}
+                                                            </Col>
+                                                        </Row>
+                                                    </Col>
 
-                                                </Row>
-                                                <Row>
-                                                    {moment(product.uploaded).format('YYYY-MM-DD')}
                                                 </Row>
                                                 <hr />
                                                 <Row>
-                                                    
-                                                <h5>{product.name}</h5>
-                                                {/* <FollowButton username={product.sold_by} followed={true}/> */}
+                                                    <Col className="text-right">
+                                                        <h4>{product.name}</h4>
+                                                        <h5>{product.prize} sek</h5>
+                                                        <h6>{product.size}</h6>
+                                                        <h6>{product.brand}</h6>
+                                                        <h6>{product.gender}</h6>
+                                                    </Col>
                                                 </Row>
                                             </Col>
-                                            <Col>
+                                            <Col xs={7} className="news-img-background">
                                                 {/* <div className="product-img-news" style={{ backgroundImage: `url(${product.product_img})` }} /> */}
                                                 <Ratio key={'1x1'} aspectRatio={'1x1'}>
-                                                    <div className="prodimg_upload" style={{ backgroundImage: `url(${product.product_img})` }} />
+                                                    <div className="prodimg_upload prod-img-news" style={{ backgroundImage: `url(${product.product_img})` }} />
                                                 </Ratio>
                                                 
                                                 {/* <ProductModal isAuth_status={isAuth} product_detail={product} name={product.product_img} slug={product.slug} /> */}

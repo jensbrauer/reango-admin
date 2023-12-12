@@ -8,10 +8,10 @@ import Spinner from 'react-bootstrap/Spinner';
 
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import FollowButton from '../followbutton';
+import FollowButton from '../buttons/followbutton';
 
 
-import { LikeProduct, CartProduct } from "./likeproduct";
+import { LikeProduct, CartProduct } from "../buttons/likeproduct";
 
 function ProductModal(props) {
   const { isAuth_status } = props;
@@ -100,7 +100,7 @@ function ProductModal(props) {
             <Button variant="light" style={{color: carted.includes(product_detail.slug) ? product_detail.is_carted === 'yes' ? '#495057' : '#0d6efd' : product_detail.is_carted === 'yes' ? '#0d6efd' : '#495057'}} onClick={() => handleCart(product_detail.slug)}>
                 add {product_detail.name} to shoppingcart <i class="fa-solid fa-cart-shopping"></i>
               </Button>
-              <FollowButton username={product_detail.uploaded_by} followed={true} />
+              {/* <FollowButton username={product_detail.uploaded_by} followed={true} /> */}
           </Row>
           <Row>
             <h5>Name: {productData.name}</h5>

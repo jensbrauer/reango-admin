@@ -50,13 +50,17 @@ export const UserHome = () => {
             <div className="news-feed">
                 {items === 'spinner' ? <div className="spinner-container"><Spinner animation="grow" /></div> : 
                 <div>
-                <h2>Name: {items.username}
-                    
-                </h2>
+                <Row>
+                    <Col>
                     <Ratio key={'1x1'} aspectRatio={'1x1'}>
                         <div className="prodimg_upload" style={{ backgroundImage: `url(${items.profile_pic})` }}>                            
                         </div>
                     </Ratio>
+                    </Col>
+                    <Col>
+                <h2>{items.username}</h2>
+                    </Col>
+                </Row>
                 </div>}
                 <hr></hr>
                 <UserForSale />

@@ -17,8 +17,6 @@ import { UserHome } from '../user/userpage';
 
 
 
-
-
 export default function PageContainer() {
     const [isAuth, setIsAuth] = useState(false);
     useEffect(() => {
@@ -27,9 +25,9 @@ export default function PageContainer() {
 
     return(
         <div>
-                <Navbar expand="lg" bg="dark" variant="dark" fixed="top">
+                <Navbar expand="lg" bg="white" variant="light" fixed="top">
                     <Container>
-                <Navbar.Brand href="/reango-frontend">SECOND HAND</Navbar.Brand>
+                <Navbar.Brand href="/reango-frontend"> <h1>H</h1> </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         

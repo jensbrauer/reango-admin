@@ -5,6 +5,7 @@ import Modal from 'react-bootstrap/Modal';
 import { SubmitProduct } from './submitproduct';
 import Ratio from 'react-bootstrap/Ratio';
 import Spinner from 'react-bootstrap/Spinner';
+import DisplayProductList from "../layouts/displayproductlist";
 
 import Row from 'react-bootstrap/Row';
 import Card from 'react-bootstrap/Card';
@@ -45,42 +46,19 @@ function UserLikedModal(props) {
   const handleShow = () => {setShow(true); };
   return (
     <>
-      <Button variant="dark" onClick={handleShow}>
+      <Button variant="white" onClick={handleShow}>
       <i class="fa-regular fa-heart"></i>
       </Button>
 
       <Modal show={show} size='lg' onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title><i class="fa-regular fa-heart"></i> Liked </Modal.Title>
+          <Modal.Title><h4><i class="fa-regular fa-heart"></i> Liked </h4></Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        <div>
-                        <Row xs={1} md={2} lg={3} className="g-4">
-                        {items ? (
-                            items.map((item, id) => (
-                                <Col key={id}>
-                                <Card>
-                                    <Ratio key={'1x1'} aspectRatio={'1x1'}>
-                                        <div className="prodimg_upload" style={{ backgroundImage: `url(${item.product_img})` }} />
-                                    </Ratio>
-                                    {/* <Card.Img variant="top" src={item.product_img} /> */}
-                                    <Card.Body>
-                                    <Card.Title>{item.name}</Card.Title>
-                                    <Card.Text>
-                                        {item.brand}{item.name}{item.slug}
-                                    </Card.Text>
-                                    </Card.Body>
-                                </Card>
-                                </Col>
-                            ))
-                            ) : (
-                            <div className="spinner-container"><Spinner animation="grow" /></div>
-                            )}
-                        </Row>
-        </div>
+                        <DisplayProductList products={items} like_included={true} />
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button className="general-button" variant="white" onClick={handleClose}>
             Close
           </Button>
         </Modal.Footer>

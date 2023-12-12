@@ -4,16 +4,19 @@ import Modal from 'react-bootstrap/Modal';
 import client from '../../interceptor/axios'
 import Ratio from 'react-bootstrap/Ratio';
 import Image from 'react-bootstrap/Image';
+import ShowProductModal from "../buttons/showproductmodal";
 
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import Spinner from 'react-bootstrap/Spinner';
+import ProductModal from '../shop/productmodal';
+import DisplayProductList from '../layouts/displayproductlist';
 
 
 
 function ProfileProductList(props) {
-    const { profile_slug } = props;
+    const { profile_username } = props;
 
     const [isAuth, setIsAuth] = useState(false);
     const [items, setItems] = useState('');
@@ -34,7 +37,7 @@ function ProfileProductList(props) {
             try {
                 const requestData = {
                     params : {
-                  slug: profile_slug,
+                  username: profile_username,
                 }};
                 const {data} = await client.get(   
                                'product_list/', requestData, {
@@ -54,29 +57,9 @@ function ProfileProductList(props) {
      }, []);
 
   return (
-    <Row id="product-list" xs={1} md={2} lg={3} className="g-4">
-                        
-                    {items ? (
-                        items.map((item, id) => (
-                            <Col key={id}>
-                            <Card bg="dark" text="light">
-                                <Ratio key={'1x1'} aspectRatio={'1x1'}>
-                                    <div className="prodimg_upload" style={{ backgroundImage: `url(${item.product_img})` }} />
-                                </Ratio>
-                                {/* <Card.Img variant="top" src={item.product_img} /> */}
-                                <Card.Body>
-                                <Card.Title>{item.name}</Card.Title>
-                                <Card.Text>
-                                    {/* <ProductModal name={item.name} slug={item.slug} /> */}
-                                </Card.Text>
-                                </Card.Body>
-                            </Card>
-                            </Col>
-                        ))
-                        ) : (
-                            <div className="spinner-container"><Spinner animation="grow" /></div>
-                        )}
-                    </Row>
+    <div>
+        <DisplayProductList products={items} like_included={true} />
+    </div>
   )
 }
 

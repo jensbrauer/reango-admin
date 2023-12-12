@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import client from '../../interceptor/axios';
-import { LikeProduct, CartProduct } from "./likeproduct";
+import { LikeProduct, CartProduct } from "../buttons/likeproduct";
 import Ratio from 'react-bootstrap/Ratio';
 
 import Button from 'react-bootstrap/Button';
@@ -15,6 +15,8 @@ import Accordion from 'react-bootstrap/Accordion';
 
 import { GenderFilter, BrandFilter, PrizeFilter } from "./shopfilters";
 import { useNavigate } from 'react-router-dom';
+import ToProfile from "../buttons/toprofile";
+import DisplayProductList from "../layouts/displayproductlist";
 
 import '../../index.css'
 
@@ -150,7 +152,7 @@ function Shop() {
               
                   <Accordion as="div">
                     <Accordion.Item as="div" eventKey="0">
-                      <Accordion.Header><h5>FILTER</h5></Accordion.Header>
+                      <Accordion.Header><h4>FILTER</h4></Accordion.Header>
                       <Accordion.Body>
                         
                     <Row>
@@ -173,9 +175,9 @@ function Shop() {
                       <Accordion.Item className="accordion-item" eventKey="0">
                         <Accordion.Header className="accordion-header"><h5>Gender</h5></Accordion.Header>
                         <Accordion.Body className="accordion-body">
-                        <Button variant={ gender.includes(0) ? 'light' : 'dark'} onClick={() => genderParamSet(0)}>Male</Button>
-                        <Button variant={ gender.includes(1) ? 'light' : 'dark'} onClick={() => genderParamSet(1)}>Female</Button>
-                        <Button variant={ gender.includes(2) ? 'light' : 'dark'} onClick={() => genderParamSet(2)}>Unisex</Button>
+                        <Button className="filter-button" variant={ gender.includes(0) ? 'light' : 'dark'} onClick={() => genderParamSet(0)}>Male</Button>
+                        <Button className="filter-button" variant={ gender.includes(1) ? 'light' : 'dark'} onClick={() => genderParamSet(1)}>Female</Button>
+                        <Button className="filter-button" variant={ gender.includes(2) ? 'light' : 'dark'} onClick={() => genderParamSet(2)}>Unisex</Button>
                         </Accordion.Body>
                       </Accordion.Item>  
                     </Accordion>
@@ -186,10 +188,10 @@ function Shop() {
                       <Accordion.Item className="accordion-item" eventKey="0">
                         <Accordion.Header className="accordion-header"><h5>Brand</h5></Accordion.Header>
                         <Accordion.Body className="accordion-body">
-                          <Button variant={ brand.includes(0) ? 'light' : 'dark'} onClick={() => brandParamSet(0)}>Other</Button>
-                          <Button variant={ brand.includes(1) ? 'light' : 'dark'} onClick={() => brandParamSet(1)}>Nike</Button>
-                          <Button variant={ brand.includes(2) ? 'light' : 'dark'} onClick={() => brandParamSet(2)}>Adidas</Button>
-                          <Button variant={ brand.includes(3) ? 'light' : 'dark'} onClick={() => brandParamSet(3)}>GUCCI</Button>
+                          <Button className="filter-button" variant={ brand.includes(0) ? 'light' : 'dark'} onClick={() => brandParamSet(0)}>Other</Button>
+                          <Button className="filter-button" variant={ brand.includes(1) ? 'light' : 'dark'} onClick={() => brandParamSet(1)}>Nike</Button>
+                          <Button className="filter-button" variant={ brand.includes(2) ? 'light' : 'dark'} onClick={() => brandParamSet(2)}>Adidas</Button>
+                          <Button className="filter-button" variant={ brand.includes(3) ? 'light' : 'dark'} onClick={() => brandParamSet(3)}>GUCCI</Button>
                         </Accordion.Body>
                       </Accordion.Item>  
                     </Accordion>
@@ -213,7 +215,7 @@ function Shop() {
             }}
             onClick={() => addFilter(user_type, setUserType, 'STORE')}
           >
-            STORE
+            <h5>store</h5>
           </button>
         </Col>
         <Col>
@@ -225,7 +227,7 @@ function Shop() {
             }}
             onClick={() => addFilter(user_type, setUserType, 'FEATURED')}
           >
-            INFLUENCERS
+            <h5>influencers</h5>
           </button>
         </Col>
         <Col>
@@ -237,59 +239,15 @@ function Shop() {
             }}
             onClick={() => addFilter(user_type, setUserType, 'USER')}
           >
-            MARKETPLACE
+            <h5>marketplace</h5>
           </button>
         </Col>
       </Row>
-            {details === 'spinner' ? <div className="spinner-container"><Spinner animation="grow" /></div>  :  
-                <Row xs={1} md={3} lg={4} className="g-4 product-list">
-                    {details.map((product, id) => ( 
-                        <Col key={id}>
-                            <Card className="store-card">
-                            <div className='listed_img'>
-                            <ProductModal isAuth_status={isAuth} product_detail={product} name={product.product_img} slug={product.slug} />
-                            </div>
-                                <Card.Body>
-                                    <Card.Title>
-                                      <Row>
-                                        
-                                      <Col xs={9}>
-                                        {product.name}
-                                      </Col>
-                                      <Col xs={3}>
-                                        
-                                        <Button className="card-like"c style={{color: liked.includes(product.slug) ? product.is_liked === 'yes' ? '#495057' : 'red' : product.is_liked === 'yes' ? 'red' : '#495057'}} onClick={() => handleLike(product.slug)}>
-                                          <i class="fa-solid fa-heart"></i>
-                                        </Button>
-                                    </Col>
-
-                                      </Row>
-                                      
-                                      {/* 
-                                        <Row>
-                                        <Col>
-                                          <Button className="card-like" variant="light" style={{color: liked.includes(product.slug) ? product.is_liked === 'yes' ? '#495057' : 'red' : product.is_liked === 'yes' ? 'red' : '#495057'}} onClick={() => handleLike(product.slug)}>
-                                            <i class="fa-solid fa-heart"></i>
-                                            
-                                          </Button> 
-                                        </Col>
-                                        <Col>
-                                          <Button className="card-like" variant="light" style={{color: carted.includes(product.slug) ? product.is_carted === 'yes' ? '#495057' : '#0d6efd' : product.is_carted === 'yes' ? '#0d6efd' : '#495057'}} onClick={() => handleCart(product.slug)}>
-                                            <h5><i class="fa-solid fa-cart-shopping"></i></h5>
-                                          </Button>
-                                        </Col>
-                                        </Row> */}
-                                    </Card.Title>
-                                    <Card.Text>
-                                        {product.prize} SEK from 
-                                        
-                                        <Button onClick={() => handleNavigate(product.profile_slug)}>{product.uploaded_by}</Button>
-                                    </Card.Text>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                    ))}
-                </Row> }
+            
+                <Row>
+                {details === 'spinner' ? <div className="spinner-container"><Spinner animation="grow" /></div>  :
+                <DisplayProductList products={details} like_included={true} />}
+                </Row>
         </div>
     );
 }
