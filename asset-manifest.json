@@ -1,16 +1,17 @@
 {
   "files": {
-    "main.css": "/reango-frontend/static/css/main.e43f4921.css",
-    "main.js": "/reango-frontend/static/js/main.40a3ca85.js",
+    "main.css": "/reango-frontend/static/css/main.8d4c7268.css",
+    "main.js": "/reango-frontend/static/js/main.d290aa30.js",
     "static/js/787.cda612ba.chunk.js": "/reango-frontend/static/js/787.cda612ba.chunk.js",
     "static/media/hero-goggles.png": "/reango-frontend/static/media/hero-goggles.e7c42e7b8cc48c7af8bc.png",
     "index.html": "/reango-frontend/index.html",
-    "main.e43f4921.css.map": "/reango-frontend/static/css/main.e43f4921.css.map",
-    "main.40a3ca85.js.map": "/reango-frontend/static/js/main.40a3ca85.js.map",
+    "static/media/H-online_logo_black_mini.webp": "/reango-frontend/static/media/H-online_logo_black_mini.3c97dd1648e3421c388a.webp",
+    "main.8d4c7268.css.map": "/reango-frontend/static/css/main.8d4c7268.css.map",
+    "main.d290aa30.js.map": "/reango-frontend/static/js/main.d290aa30.js.map",
     "787.cda612ba.chunk.js.map": "/reango-frontend/static/js/787.cda612ba.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e43f4921.css",
-    "static/js/main.40a3ca85.js"
+    "static/css/main.8d4c7268.css",
+    "static/js/main.d290aa30.js"
   ]
 }
